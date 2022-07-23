@@ -1,0 +1,11 @@
+---
+- hosts: ec2
+  become: true
+  become_method: sudo
+  become_user: root
+  tasks:
+    - name: copy the file from one location to anoone location
+      copy:
+        src: /home/ubuntu/ansible.yml
+        dest: /home/ubuntu/
+

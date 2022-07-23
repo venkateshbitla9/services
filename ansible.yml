@@ -1,0 +1,20 @@
+---
+ - hosts: localhost
+   become: true
+   become_method: sudo
+   become_user: root
+   vars:
+    service: "{{service}}"
+   tasks:
+    - name: update
+      apt:
+       update_cache: yes
+    - name: Install latest version of Apache
+      apt:
+        name="{{service}}"
+        state=latest
+    - name: start service if not started
+      ansible.builtin.service:
+         name: "{{service}}"
+         state: started
+

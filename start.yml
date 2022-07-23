@@ -1,0 +1,20 @@
+---
+ - hosts: localhost
+   become: true
+   become_method: sudo
+   become_user: root
+   tasks:
+    - name: check status
+      ignore_errors: true
+      shell: systemctl status apache2
+      register: status
+    - name: store
+      ansible.builtin.debug:
+       var: status.rc
+
+    - name: restart
+      service:
+       name: apache2
+       state: restarted
+      when: status.rc !=0
+
