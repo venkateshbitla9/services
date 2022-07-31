@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+    - name: Update apt
+      apt: update_cache=yes
+
+    - name: Install mysql
+      ansible.builtin.apt:
+       name: php
+       state: present
+      with_items:
+              - libapache2-mod-php
+              -  php-mysql
