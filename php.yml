@@ -8,7 +8,7 @@
     - name: Update apt
       apt: update_cache=yes
 
-    - name: Install mysql
+    - name: Install php
       ansible.builtin.apt:
        name: php
        state: present
