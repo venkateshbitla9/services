@@ -16,5 +16,5 @@
     - name: start service if not started
       ansible.builtin.service:
          name: "{{service}}"
-         state: started
+         state: start
 
